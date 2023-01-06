@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Registar a sua conta</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Adamina&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/all.css">
+    <link rel="stylesheet" href="assets/css/Contact-form-simple.css">
+</head>
+
+<body>
+    <main class="background" style="min-height: 929px;">
+        <nav class="navbar navbar-light navbar-expand-md" style="background-color: rgb(199, 142, 252);">
+            <div class="container-fluid"><a class="navbar-brand" href="index.html"><img src="assets/img/FITHUB.png"
+                        width="82" height="52"></a><button data-bs-toggle="collapse" class="navbar-toggler"
+                    data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1" style="text-align: left;">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"></li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item"><a class="nav-link" href="contactos.html"
+                                style="text-align: center;">Contact
+                                us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid" style="display: flex; justify-content: center;">
+            <div class="card border-3 mt-4" style="width: 800px; border-color: black;">
+                <div class="card-body" style="background-color: rgb(211, 211, 211);">
+                    <div style=" text-align: center;">
+                        <div class="display-2 titulo" style="font-weight: bold; font-size:40px;">Login(Personal Trainer)
+                        </div>
+                        <form id="register">
+                            <div>
+                                <input id="Email" style="width: 90%; font-size: large; " class="mt-4 " type="text "
+                                    placeholder="Email ">
+                                <div class="d-none text-danger col-form-label" id="EmailError">
+                                    <i class="fa fa-exclamation-triangle"> Este campo é de preenchimento
+                                        obrigatório.</i>
+                                </div>
+                            </div>
+                            <div>
+                                <input id="Password" style="width: 90%; font-size: large; " class="mt-4 "
+                                    type="password" placeholder="Password ">
+                                <div class="d-none text-danger col-form-label" id="PasswordError">
+                                    <i class="fa fa-exclamation-triangle"> Este campo é de preenchimento
+                                        obrigatório.</i>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <div class="d-none text-success col-form-label mt-3" id="SuccessfulRegister">Login
+                                        bem sucedido!</div>
+                                    <input type="button" class="btn btn-secondary mt-3 " value="Login"
+                                        style="width: 50%; font-size:large; height: 40px; "
+                                        onclick="return validateForm()">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js "
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p "
+        crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js "
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF "
+        crossorigin="anonymous "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        const form = document.getElementById('register');
+        const email = document.getElementById('Email');
+        const password = document.getElementById('Password');
+        const emailError = document.getElementById('EmailError');
+        const passwordError = document.getElementById('PasswordError');
+
+        const loginButton = document.querySelector('input[value="Login"]');
+
+        loginButton.addEventListener('click', e => {
+            e.preventDefault();
+
+            if (email.value === '') {
+                emailError.classList.remove('d-none');
+            } else {
+                emailError.classList.add('d-none');
+            }
+
+            if (password.value === '') {
+                passwordError.classList.remove('d-none');
+            } else {
+                passwordError.classList.add('d-none');
+            }
+
+            // Additional validation checks can go here
+
+            if (email.value !== '' && password.value !== '') {
+                // All validation checks have passed, so you can submit the form
+                form.submit();
+
+                // Redirect to the "Planos.html" page
+                window.location.href = 'paginaPT.html';
+            }
+        });
+    </script>
+</body>
+
+</html>
