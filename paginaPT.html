@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Brand</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Adamina&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/Contact-form-simple.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" style="background-color: rgb(199, 142, 252);">
+        <div class="container-fluid"><a class="navbar-brand" href="#"><img src="assets/img/FITHUB.png" width="82"
+                    height="52"></a><button data-bs-toggle="collapse" class="navbar-toggler"
+                data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="text-align: left;">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item pr-3 pl-3"><a class="nav-link" href="index.html">Log out</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="row" style="border-bottom: 1px solid black;margin:100px">
+        <h1>Os seus Planos</h1>
+    </div>
+    <div class="row" style="text-align:center;justify-content:center">
+        <button id="add-button">+</button>
+    </div>
+    <div class="card-container container" style="margin:0 auto; width:800px;">
+        <div class="row" style="justify-content: center;">
+
+            <div id="modal" style="display:none; padding-top:100px; overflow:scroll">
+                <div class="tabs">
+                    <button class="tab-button" data-tab="add" onclick="showForm('add')">Treino</button>
+                    <button class="tab-button" data-tab="diets" onclick="showForm('diets')">Dieta</button>
+                    <button class="close-button" id="close-modal">X</button>
+                </div>
+                <form id="add-form">
+                    <label for="image">Imagem (URL):</label><br>
+                    <input type="text" id="image"><br>
+                    <label for="warmup">Aquecimento:</label><br>
+                    <textarea id="warmup" rows="5"></textarea><br>
+                    <label for="workout">Séries:</label><br>
+                    <textarea id="workout" rows="5"></textarea><br>
+                    <label for="title">Título:</label><br>
+                    <input type="text" id="title"><br>
+                    <button type="submit">Criar</button>
+                </form>
+                <form id="diets-form" style="display: none;">
+                    <h3>Pré-Treino</h3>
+                    <textarea rows="5" id="pre-workout"></textarea><br>
+                    <h3>Pós Treino</h3>
+                    <textarea rows="5" id="post-workout"></textarea><br>
+                    <h3>Pequeno-Almoço</h3>
+                    <textarea rows="5" id="breakfast"></textarea><br>
+                    <h3>Almoço</h3>
+                    <textarea rows="5" id="lunch"></textarea><br>
+                    <h3>Jantar</h3>
+                    <textarea rows="5" id="dinner"></textarea><br>
+                    <h3>Informações Adicionais</h3>
+                    <textarea rows="5" id="additional-info"></textarea><br>
+                    <label for="image">Imagem (URL):</label><br>
+                    <input type="text" id="image"><br>
+                    <label for="title">Título:</label><br>
+                    <input type="text" id="title"><br>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div id="edit-modal" class="modal" style="display:none; overflow:scroll">
+        <form id="edit-form">
+            <label for="edit-image">Imagem (URL):</label><br>
+            <input type="text" id="edit-image"><br>
+            <label for="edit-warmup">Aquecimento:</label><br>
+            <textarea id="edit-warmup" rows="5"></textarea><br>
+            <label for="edit-workout">Exercíos:</label><br>
+            <textarea id="edit-workout" rows="5"></textarea><br>
+            <label for="edit-title">Titulo:</label><br>
+            <input type="text" id="edit-title"><br>
+            <button type="submit">Guarde</button>
+        </form>
+    </div>
+
+
+
+
+    <main class=" page lanidng-page"></main>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        document.getElementById("add-button").addEventListener("click", function () {
+            document.getElementById("modal").style.display = "block";
+        });
+
+        document.getElementById("add-form").onsubmit = function (event) {
+            event.preventDefault(); // Prevent the form from being submitted
+
+            // Get the form data
+            var imageUrl = document.getElementById("image").value;
+            var warmupExercises = document.getElementById("warmup").value;
+            var workoutExercises = document.getElementById("workout").value;
+            var title = document.getElementById("title").value;
+            var cardType = "treino"; // or "dieta"
+            var card = document.createElement("div");
+            card.classList.add("card", `card-type-${cardType}`);
+            // Create the card element
+            var card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = '<a href="#" onclick="editCard(event)"><div class="card-image" style="background-image: url(' + imageUrl + ')"><h2 class="card-title">' + title + '</h2></div><div class="card-text"><p>Warmup exercises:</p><p>' + warmupExercises + '</p><p>Workout exercises:</p><p>' + workoutExercises + '</p></div></a>';
+
+            // Append the card element to the container element
+            document.querySelector(".card-container").appendChild(card);
+
+            // Close the modal element
+            document.getElementById("modal").style.display = "none";
+        };
+
+        function editCard(event) {
+            event.preventDefault(); // Prevent the link from being followed
+
+            // Get the card element that was clicked
+            var card = event.target.closest(".card");
+
+            // Get the card data
+            var imageUrl = card.querySelector(".card-image").style.backgroundImage;
+            var warmupExercises = card.querySelector(".card-text p:nth-of-type(2)").textContent;
+            var workoutExercises = card.querySelector(".card-text p:nth-of-type(4)").textContent;
+            var title = card.querySelector(".card-title").textContent;
+
+            // Populate the form with the current card data
+            document.getElementById("edit-image").value = imageUrl.slice(4, -1); // Remove the "url(" and ")" from the background-image string
+            document.getElementById("edit-warmup").value = warmupExercises;
+            document.getElementById("edit-workout").value = workoutExercises;
+            document.getElementById("edit-title").value = title;
+
+            // Show the edit modal
+            document.getElementById("edit-modal").style.display = "block";
+
+            // Save the card element as a global variable so it can be updated later
+            window.currentCard = card;
+
+            if (card.classList.contains("card-type-treino")) {
+                // Show the add-form
+                document.getElementById("add-form").style.display = "block";
+                document.getElementById("diets-form").style.display = "none";
+            } else if (card.classList.contains("card-type-dieta")) {
+                // Show the diets-form
+                document.getElementById("add-form").style.display = "none";
+                document.getElementById("diets-form").style.display = "block";
+            }
+        }
+
+
+        document.getElementById("edit-form").onsubmit = function (event) {
+            event.preventDefault(); // Prevent the form from being submitted
+
+            // Get the form data
+            var imageUrl = document.getElementById("edit-image").value;
+            var warmupExercises = document.getElementById("edit-warmup").value;
+            var workoutExercises = document.getElementById("edit-workout").value;
+            var title = document.getElementById("edit-title").value;
+
+
+            // Update the current card element with the new data
+            window.currentCard.querySelector(".card-image").style.backgroundImage = 'url(' + imageUrl + ')';
+            window.currentCard.querySelector(".card-text p:nth-of-type(2)").textContent = warmupExercises;
+            window.currentCard.querySelector(".card-text p:nth-of-type(4)").textContent = workoutExercises;
+            window.currentCard.querySelector(".card-title").textContent = title;
+
+            // Close the modal element
+            document.getElementById("edit-modal").style.display = "none";
+        };
+
+        document.querySelectorAll('.tab-button').forEach(tabButton => {
+            tabButton.addEventListener('click', () => {
+                const tab = tabButton.getAttribute('data-tab');
+                document.querySelectorAll('form').forEach(form => {
+                    form.style.display = form.id === `${tab}-form` ? 'block' : 'none';
+                });
+            });
+        });
+
+        function showForm(tab) {
+            // Hide all forms
+            document.getElementById("add-form").style.display = "none";
+            document.getElementById("diets-form").style.display = "none";
+
+            // Show the selected form or the add-form by default
+            if (tab === "add" || !tab) {
+                document.getElementById("add-form").style.display = "block";
+            } else if (tab === "diets") {
+                document.getElementById("diets-form").style.display = "block";
+            }
+        }
+
+
+
+        var closeButton = document.getElementById("close-modal");
+
+        // Add a click event listener to the "X" element
+        closeButton.addEventListener("click", function () {
+            // Get the modal element
+            var modal = document.getElementById("modal");
+            // Set the modal's display property to "none" to hide it
+            modal.style.display = "none";
+        });
+
+        function createCard(tab) {
+            if (tab === "add") {
+                // create a treino card
+            } else if (tab === "diets") {
+                // create a dieta card
+            }
+        }
+
+        const dietsForm = document.getElementById('diets-form');
+        const cardContainer = document.querySelector('.card-container');
+        const modal = document.getElementById('modal');
+
+        dietsForm.addEventListener('submit', (event) => {
+            // Prevent the form from being submitted and reloading the page
+            event.preventDefault();
+
+            // Get the values of the form inputs
+            const image = document.getElementById('image').value;
+            const title = document.getElementById('title').value;
+
+            // Create a new card element
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = '<a href="#" onclick="editCard(event)"><div class="card-image" style="background-image: url(' + image + ')"><h2 class="card-title">' + title;
+
+            // Append the card to the container
+            cardContainer.appendChild(card);
+
+            // Hide the modal
+            modal.style.display = 'none';
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
